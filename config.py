@@ -1,4 +1,5 @@
 import os
+from re import DEBUG
 
 class Config:
     SECRET_KEY = os.environ.get('YOUcantHackThis')
@@ -11,7 +12,7 @@ class TestConfig(Config):
       SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:malika@localhost/pitch'
 class DevConfig(Config):
       SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:malika@localhost/pitch'
-
+      DEBUG = True
 
 config_options = {
      'development': DevConfig,
