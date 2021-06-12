@@ -1,10 +1,10 @@
+from sqlalchemy.orm import backref
 from . import db
-import app
 from werkzeug.security import generate_password_hash ,check_password_hash
 from . import login_manager
-from . import views,forms
+from  flask_login import UserMixin
 
-class User(db.Model): # for creating new user
+class User(UserMixin ,db.Model): # for creating new user
     __tablename__ ='users'
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255))
