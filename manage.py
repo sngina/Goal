@@ -7,6 +7,10 @@ from flask_migrate import Migrate, MigrateCommand
 app = create_app('development')
 
 manager = Manager(app)
+manager.add_command('server', Server)
+migrate = Migrate(app, db) # intialze migrate pass in db and app instance
+manager.add_command('db',MigrateCommand) #manager command and pass the migratecommand class
+
 @manager.shell
 def make_shell_context():
     return dict(app = app,db = db,User = User, Role = Role )
