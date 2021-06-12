@@ -1,6 +1,8 @@
 from . import db
 import app
 from werkzeug.security import generate_password_hash ,check_password_hash
+from . import login_manager
+from . import views,forms
 
 class User(db.Model): # for creating new user
     __tablename__ ='users'
@@ -27,6 +29,10 @@ class User(db.Model): # for creating new user
 
     def __repr__(self):
         return f'User{self.username}' # function for debuging
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
+
 
 class Role(db.Model):
      __tablename__ = 'roles'
