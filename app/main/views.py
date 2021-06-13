@@ -40,9 +40,9 @@ def category(id):
 @main.route('/pitches', methods = ['GET','POST'])
 @login_required
 def pitches(id):
-    '''
-    Function to check Pitches form
-    '''
+    
+
+    
     form = pitchForm()
     pitches = pitches.query.filter_by(id=id).first()
 

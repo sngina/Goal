@@ -2,6 +2,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from config import config_options
 from flask_login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail
 
 
 db = SQLAlchemy()
@@ -9,7 +11,7 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
-
+mail = Mail()
 
 # function of creating app.
 def create_app(config_name):
