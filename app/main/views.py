@@ -14,13 +14,20 @@ import markdown2
 @main.route('/')
 def index():
 
-    '''
-    View root page function that returns the index page and its data
-    '''
-    # categories = Category.get_categories()
-    # print(categories)
+   
+    categories = Category.get_categories(id)
+    
     title = 'Home - Welcome to One Minute Pitch'
     return render_template('index.html', title = title)
+
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(username = uname).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template("profile/profile.html", user =user)
 
 @main.route('/category', methods = ['GET','POST'])
 @login_required
@@ -69,7 +76,7 @@ def single_pitch(id):
         abort(404)
 
     if forms.validate_on_submit():
-        single_pitchtalk=single_pitch .get_single_pitch(id)
+        single_pitchtalk=single_pitch.get_single_pitch(id)
         title = 'Comment Section'
         return render_template('pitch.html', title = title, pitches = pitches, comment = comment)
 

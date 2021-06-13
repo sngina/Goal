@@ -27,11 +27,11 @@ class User(UserMixin ,db.Model): # for creating new user
 
     @password.setter
     def password(self, password):
-        self.pass_secure = generate_password_hash(password)
+        self.password_secure = generate_password_hash(password)
 
 
     def verify_password(self,password):
-        return check_password_hash(self.pass_secure,password)
+        return check_password_hash(self.password_secure,password)
 
     def __repr__(self):
         return f'User{self.username}' # function for debuging
@@ -58,7 +58,7 @@ class Category(db.Model):
         db.session.commit()
 
     @classmethod
-    def get_categories(cls):
+    def get_categories(cls,id):
         
         categories = cls.query.all()
         return categories
