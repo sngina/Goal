@@ -15,10 +15,10 @@ import markdown2
 def index():
 
    
-    categories = Category.get_categories(id)
+    categories = Category.get_categories()
     
     title = 'Home - Welcome to One Minute Pitch'
-    return render_template('index.html', title = title)
+    return render_template('index.html', title = title ,categories =categories)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -39,7 +39,7 @@ def category(id):
     if category is None:
         abort(404)
 
-    pitches = PepForm.get_pitches(id)
+    pitches = Talk.get_pitches(id)
     title = "Pitches"
     return render_template('category.html', title = title,pitches = pitches)
 
@@ -65,7 +65,7 @@ def pitches(id):
     title = 'Pitches'
     return render_template('new_pitches.html', title = title, pitch_form = form)
 
-# Dynamic routing for one pitch
+
 @main.route('/single_pitch', methods = ['GET','POST'])
 @login_required
 def single_pitch(id):
@@ -76,7 +76,7 @@ def single_pitch(id):
         abort(404)
 
     if forms.validate_on_submit():
-        single_pitchtalk=single_pitch.get_single_pitch(id)
+        single_pitchtalk= single_pitch.get_single_pitch(id)
         title = 'Comment Section'
         return render_template('pitch.html', title = title, pitches = pitches, comment = comment)
 

@@ -51,14 +51,12 @@ class Category(db.Model):
 
     # saving category
     def save_category(self):
-        '''
-        Function that saves a category
-        '''
+        
         db.session.add(self)
         db.session.commit()
 
     @classmethod
-    def get_categories(cls,id):
+    def get_categories(cls):
         
         categories = cls.query.all()
         return categories
@@ -66,9 +64,7 @@ class Category(db.Model):
 #pitches
 class Talk(db.Model):
 
-    """
-    List of pitches in each category
-    """
+    
     all_pitches = []
 
     id = db.Column(db.Integer,primary_key = True)
@@ -79,9 +75,7 @@ class Talk(db.Model):
 
 
     def save_pitch(self):
-        '''
-        Save the pitches
-        '''
+        
         db.session.add(self)
         db.session.commit()
 
