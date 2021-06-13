@@ -31,7 +31,7 @@ def profile(uname):
 
 @main.route('/category', methods = ['GET','POST'])
 @login_required
-def category(id):
+def category():
     
 
     category = Category.query.get(id)
@@ -41,7 +41,7 @@ def category(id):
 
     pitches = Talk.get_pitches(id)
     title = "Pitches"
-    return render_template('category.html', title = title,pitches = pitches)
+    return render_template('category.html', title = title,category=category,pitches = pitches)
 
 # Dynamic routing for pitches
 @main.route('/pitches', methods = ['GET','POST'])
@@ -53,8 +53,8 @@ def pitches(id):
     form = PepForm()
     pitchetalk = pitches.query.filter_by(id=id).first()
 
-    if category is None:
-        abort(404)
+    
+    abort(404)
 
     if form.validate_on_submit():
         content = form.content.data
@@ -68,7 +68,7 @@ def pitches(id):
 
 @main.route('/single_pitch', methods = ['GET','POST'])
 @login_required
-def single_pitch(id):
+def single_pitch():
     
     # pitches = talk.query.get(id)
 
@@ -84,7 +84,7 @@ def single_pitch(id):
 
 @main.route('/comment', methods = ['GET','POST'])
 @login_required
-def comment(id):
+def comment():
     
     form = CommentForm()
     comment=Comments.query.filter_by(id=id).first()

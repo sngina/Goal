@@ -19,6 +19,8 @@ class User(UserMixin ,db.Model): # for creating new user
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
     password_secure = db.Column(db.String(255))
+    pitches = db.relationship("Talk", backref= "user", lazy = "dynamic")
+    comment = db.relationship("Comments", backref="user", lazy = "dynamic")
 
 
     @property
@@ -58,7 +60,7 @@ class Category(db.Model):
     @classmethod
     def get_categories(cls):
         
-        categories = cls.query.all()
+        categories = Category.query.all()
         return categories
 
 #pitches
