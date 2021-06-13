@@ -1,19 +1,9 @@
-{% extends 'base.html'%}
-<!DOCTYPE html>
 
-<html>
+{% extends 'base.html'%} 
+{% import 'macros.html' as macro%}
+{% import "bootstrap/wtf.html" as wtf %}
 
-<head>
-   <meta charset="utf-8"> {% if title %}
-   <title> {{ title }}</title>
-   {% else %}
-   <title> MINUTE PITCH </title>
-   {% endif %}
-   <link href="https://fonts.googleapis.com/css?family=Lobster%7CNoto+Sans+SC" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css?family=Lobster%7CNoto+Sans+SC%7CPacifico" rel="stylesheet"></head>
-{% extends 'base.html'%} {% import 'macros.html' as macro%}{% import "bootstrap/wtf.html" as wtf %}
 
-<body>
 
        {% block styles%}
        {{ super() }}
@@ -78,6 +68,3 @@
    </div>
 
    {% endblock%}
-</body>
-
-</html>

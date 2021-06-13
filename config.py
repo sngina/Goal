@@ -2,7 +2,7 @@ import os
 from re import DEBUG
 
 class Config:
-    SECRET_KEY = os.environ.get('YOUcantHackThis')
+    SECRET_KEY = 'YOUcantHackThis'
 
 
 class ProdConfig(Config):

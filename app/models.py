@@ -59,10 +59,8 @@ class Category(db.Model):
 
     @classmethod
     def get_categories(cls):
-        '''
-        Function that returns all the data from the categories after being queried
-        '''
-        categories = Category.query.all()
+        
+        categories = cls.query.all()
         return categories
 
 #pitches
