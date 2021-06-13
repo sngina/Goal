@@ -7,6 +7,7 @@ from flask_login import login_required , current_user
 from .. import db 
 from . forms import PepForm, CommentForm
 from app.main import forms
+import markdown2
 
 # Views
 
