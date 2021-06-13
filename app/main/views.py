@@ -26,8 +26,9 @@ def profile(uname):
 
     if user is None:
         abort(404)
+    else:
 
-    return render_template("profile/profile.html", user =user)
+        return render_template("profile/profile.html", user = user)
 
 @main.route('/category', methods = ['GET','POST'])
 @login_required
@@ -75,6 +76,8 @@ def single_pitch():
     if pitches is None:
         abort(404)
 
+    form = PepForm()
+
     if forms.validate_on_submit():
         single_pitchtalk= single_pitch.get_single_pitch(id)
         title = 'Comment Section'
@@ -82,15 +85,15 @@ def single_pitch():
 
 
 
-@main.route('/comment', methods = ['GET','POST'])
+@main.route('/comment/<id>', methods = ['GET','POST'])
 @login_required
-def comment():
+def comment(id):
     
     form = CommentForm()
     comment=Comments.query.filter_by(id=id).first()
 
-    if pitches is None:
-        abort(404)
+    # if pitches is None:
+    #     abort(404)
 
     if form.validate_on_submit():
         comment_section_id = form.comment_section_id.data
