@@ -31,13 +31,11 @@ def profile(uname):
         pitches = Talk.query.filter_by(user_id = current_user.id).all()
         return render_template("profile/profile.html", user = user ,pitches = pitches)
  #function  ya category
-@main.route('/category/<init:id>', methods = ['GET','POST'])
-@login_required
+@main.route('/category/<int:id>', methods = ['GET','POST'])
 def category(id):
-
-    # pitches = Category.get_categories()
+    pitches = Category.get_categories(id)
     
-    pitches = Category.query.get()
+    # pitches = Category.query.get(id)
     print(category)
     if category is None:
         abort(404)
