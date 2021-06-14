@@ -10,7 +10,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-
+ # function of the user
 
 class User(UserMixin,db.Model):
     
@@ -39,7 +39,7 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'{self.username}'
 
-
+# the pitch function
 
 class Pitch(db.Model):
     '''
@@ -66,7 +66,7 @@ class Pitch(db.Model):
     def __repr__(self):
         return f'Pitch {self.description}'
 
-    
+    # the class function
 
 class Comment(db.Model):
     __tablename__='comments'
@@ -80,7 +80,7 @@ class Comment(db.Model):
     def __repr__(self):
         return f"Comment : id: {self.id} comment: {self.description}"
 
-
+# upvote function
 class Upvote(db.Model):
     __tablename__ = 'upvotes'
 
@@ -113,7 +113,7 @@ class Upvote(db.Model):
         return f'{self.user_id}:{self.pitch_id}'
 
 
-
+#the downvote function
 class Downvote(db.Model):
     __tablename__ = 'downvotes'
 
@@ -134,12 +134,12 @@ class Downvote(db.Model):
     
     @classmethod
     def get_downvotes(cls,id):
-        downvote = Downvote.query.filter_by(pitch_id=id).all()
+        downvote = cls.query.filter_by(pitch_id=id).all()
         return downvote
 
     @classmethod
     def get_all_downvotes(cls,pitch_id):
-        downvote = Downvote.query.order_by('id').all()
+        downvote = cls.query.order_by('id').all()
         return downvote
 
     def __repr__(self):

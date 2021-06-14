@@ -1,16 +1,15 @@
-{extends 'base.html'%}
-{% import 'macros.html' as macro%}
-   {%block styles%}
-   
-  <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">{%endblock%}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% extends 'bootstrap/base.html' %}
+{% include 'navbar.html'%}
 
+  
  
 
   <!-- blocked content -->
   {% block content %}
   <div class="container">
 	<div class="row">
-		<div class="jumbotron">
+		<div class="pitch">
 				{{wtf.quick_form(form)}}
 		<ul style="list-style: none;">
 				{% for pitch in pitches %}
