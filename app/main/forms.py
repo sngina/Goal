@@ -1,10 +1,23 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,TextAreaField,SubmitField
+from wtforms import StringField,PasswordField,SubmitField,BooleanField,SubmitField,TextAreaField,RadioField
+from wtforms.validators import Required,Email,EqualTo
+from wtforms import ValidationError
 
-class PepForm(FlaskForm):
-    content = TextAreaField('New Pitch')
-    submit = SubmitField('Submit')
+
+
+class PitchForm(FlaskForm):
+	title = StringField('Title', validators=[Required()])
+	description = TextAreaField("What would you like to pitch ?",validators=[Required()])
+	category = RadioField('Label', choices=[ ('promotionpitch','promotionpitch'), ('interviewpitch','interviewpitch'),('pickuplines','pickuplines'),('productpitch','productpitch')],validators=[Required()])
+	submit = SubmitField('Submit')
 
 class CommentForm(FlaskForm):
-    comment_section_id = TextAreaField('New Comment')
-    submit = SubmitField('Submit')
+	description = TextAreaField('Add comment',validators=[Required()])
+	submit = SubmitField()
+
+class UpvoteForm(FlaskForm):
+	submit = SubmitField()
+
+
+class Downvote(FlaskForm):
+	submit = SubmitField()

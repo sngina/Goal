@@ -1,10 +1,14 @@
 import os
-from re import DEBUG
+
 
 class Config:
     SECRET_KEY = 'YOUcantHackThis'
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:malika@localhost/one_minute_pitch'
-
+    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SIMPLEMDE_JS_IIFE = True
     SIMPLEMDE_USE_CDN = True
 
@@ -22,9 +26,3 @@ config_options = {
      'production': ProdConfig,
      'test': TestConfig
 }
-MAIL_SERVER = 'smtp.googlemail.com'
-MAIL_PORT = 587
-MAIL_USE_TLS = True
-MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
-MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
-

@@ -1,69 +1,17 @@
 
 {% extends 'base.html'%} 
-{% import 'macros.html' as macro%}
-
-
-
-       {% block styles%}
-       {{ super() }}
-       <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
-       {% endblock %}
-
-
-   {% block content %}
-
-   <div class="well">
-       <H1 style="font-family: 'Pacifico', cursive;text-align: center; color: papayawhip;"> WELCOME  TO MY PITCH WEBSITE</H1>
-
-   </div>
-   <!-- <div class="jumbotron"> -->
-   <div class="container" style="background-color: rgb(235, 230, 160);">
-
-       <h3 style="text-align:center">View and Pitch ideas </h3>
-
-       <nav class="navbar navbar-default" role="navigation" style="text-align:center;">
-
-           <!-- Collect the nav links, forms, and other content for toggling -->
-           <div class="collapse navbar-collapse navbar-collapse" id="pro">
-               <ul class="nav navbar-nav-navbar-right">
-                   <li style="padding-right:150px; color:papayawhip;"><a href="{{url_for('main.category', id = current_user.id)}}">Category</a></li>
-                   <hr>
-                   <li style="padding-right:150px; color:papayawhip;"><a href="/Single_pitch">Single_pitch</a></li>
-                   <hr>
-                   <li style="padding-right:150px; color:papayawhip"><a href="/pitches">Pitches</a></li>
-                   <hr>
-                   <li style="padding-right:150px; color:papayawhip"><a href="/Comment">Comment</a></li>
-                   <hr>
-
-               </ul>
-           </div>
-       </nav>
-  <button type="button" id="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" class="btn btn-primary">View</button>
-
-
-       {% for prodo in index %}
-       <div class="panel panel-success panel-heading" style="text-align:center;">
-           <ol>
-               <h3>Category:{{prodo.id}}</h3>
-               <H3 style="font-family: 'Lobster', cursive;">{{prodo.body}}</H3>
-               <p>By:{{prodo.post}}</p>
-               <p>{{prodo.date_posted}}</p>
-               <a href="/comment/5">comment</a>
-
-               <h3>Comments</h3>
-          {% for comment in comm %}
-          {{comment.poster}}
-          By:{{ comment.comment }}
-
-          {% endfor %}
-
-           </ol>
-       </div>
-
-
-
-
-       {% endfor %}
-   </div>
-
-   {% endblock%}
+{% block content %}
+<div class="container-fluid welcome-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 welcome">
+                {% if current_user.is_authenticated%}
+                <a id="start" class="btn btn-danger animated infinite flash" href="{{url_for('home.index')}}">See all Pitches</a>
+                {% else %}
+                <a id="start" class="btn btn-danger animated infinite flash" href="{{url_for('auth.login')}}">Sign In</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
