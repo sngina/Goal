@@ -18,7 +18,7 @@ def index():
     categories = Category.get_categories()
     
     title = 'Home - Welcome to One Minute Pitch'
-    return render_template('index.html', title = title ,categories =categories)
+    return render_template('index.html', title = title ,categories = categories)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -26,9 +26,8 @@ def profile(uname):
 
     if user is None:
         abort(404)
-    else:
-
-        return render_template("profile/profile.html", user = user)
+    
+    return render_template("profile/profile.html", user = user)
 
 @main.route('/category', methods = ['GET','POST'])
 @login_required
@@ -36,7 +35,7 @@ def category():
     
 
     category = Category.query.get(id)
-
+    print(category)
     if category is None:
         abort(404)
 
@@ -47,15 +46,15 @@ def category():
 # Dynamic routing for pitches
 @main.route('/pitches', methods = ['GET','POST'])
 @login_required
-def pitches(id):
+def pitches():
     
 
     
     form = PepForm()
-    pitchetalk = pitches.query.filter_by(id=id).first()
+    pitche = pitches.query.filter_by(id=id).first()
 
-    
-    abort(404)
+    if category is None:
+       abort(404)
 
     if form.validate_on_submit():
         content = form.content.data
@@ -64,7 +63,7 @@ def pitches(id):
         return redirect(url_for('.category', id = category.id))
 
     title = 'Pitches'
-    return render_template('new_pitches.html', title = title, pitch_form = form)
+    return render_template('new_pitch.html', title = title, pitch_form = form)
 
 
 @main.route('/single_pitch', methods = ['GET','POST'])
@@ -78,7 +77,7 @@ def single_pitch():
 
     form = PepForm()
 
-    if forms.validate_on_submit():
+    if form.validate_on_submit():
         single_pitchtalk= single_pitch.get_single_pitch(id)
         title = 'Comment Section'
         return render_template('pitch.html', title = title, pitches = pitches, comment = comment)
