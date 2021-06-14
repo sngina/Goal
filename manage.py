@@ -11,6 +11,14 @@ manager.add_command('server', Server)
 migrate = Migrate(app, db) # intialze migrate pass in db and app instance
 manager.add_command('db',MigrateCommand) #manager command and pass the migratecommand class
 
+@manager.command
+def test():
+    """Run the unit tests."""
+    import unittest
+    tests = unittest.TestLoader().discover('test')
+    unittest.TextTestRunner(verbosity=2).run(tests)
+
+
 @manager.shell
 def make_shell_context():
     return dict(app = app,db = db,User = User, Role = Role )

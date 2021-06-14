@@ -27,14 +27,17 @@ def profile(uname):
     if user is None:
         abort(404)
     
-    return render_template("profile/profile.html", user = user)
-
-@main.route('/category', methods = ['GET','POST'])
+    else:
+        pitches = Talk.query.filter_by(user_id = current_user.id).all()
+        return render_template("profile/profile.html", user = user ,pitches = pitches)
+ #function  ya category
+@main.route('/category/<init:id>', methods = ['GET','POST'])
 @login_required
-def category():
-    
+def category(id):
 
-    category = Category.query.get(id)
+    # pitches = Category.get_categories()
+    
+    pitches = Category.query.get()
     print(category)
     if category is None:
         abort(404)
@@ -58,9 +61,9 @@ def pitches():
 
     if form.validate_on_submit():
         content = form.content.data
-        new_pitch = PepForm(content=content,user_id=current_user.id,category_id=category.id)
+        new_pitch = PepForm(content=content,user_id=current_user.id,category_id=category.id ,description = category.description)
         new_pitch.save_pitch()
-        return redirect(url_for('.category', id = category.id))
+        return redirect(url_for('category',content = content,))
 
     title = 'Pitches'
     return render_template('new_pitch.html', title = title, pitch_form = form)
@@ -82,7 +85,7 @@ def single_pitch():
         title = 'Comment Section'
         return render_template('pitch.html', title = title, pitches = pitches, comment = comment)
 
-
+# fuction ya comment
 
 @main.route('/comment/<id>', methods = ['GET','POST'])
 @login_required
