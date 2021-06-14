@@ -88,7 +88,7 @@ class Talk(db.Model):
     # display pitches
     @classmethod
     def get_pitches(cls,id):
-        pitches = Talk.query.order_by(Talk.date_posted.desc()).filter_by(category_id=id).all()
+        pitches = Talk.query.order_by(Talk.date_posted.desc()).filter_by(id=id).all()
         return pitches
 
 

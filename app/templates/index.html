@@ -26,7 +26,7 @@
            <!-- Collect the nav links, forms, and other content for toggling -->
            <div class="collapse navbar-collapse navbar-collapse" id="pro">
                <ul class="nav navbar-nav-navbar-right">
-                   <li style="padding-right:150px; color:papayawhip;"><a href="/category">Category</a></li>
+                   <li style="padding-right:150px; color:papayawhip;"><a href="{{url_for('main.category', id = current_user.id)}}">Category</a></li>
                    <hr>
                    <li style="padding-right:150px; color:papayawhip;"><a href="/Single_pitch">Single_pitch</a></li>
                    <hr>

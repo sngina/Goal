@@ -3,7 +3,7 @@ from app.auth.forms import LoginForm
 from flask import render_template,request,redirect,url_for,abort
 from . import main 
 from ..models import  User ,Category ,Talk ,Comments
-from flask_login import login_required , current_user
+from flask_login import login_required ,current_user
 from .. import db 
 from . forms import PepForm, CommentForm
 from app.main import forms
@@ -33,7 +33,7 @@ def profile(uname):
  #function  ya category
 @main.route('/category/<int:id>', methods = ['GET','POST'])
 def category(id):
-    pitches = Category.get_categories(id)
+    pitches = Category.get_categories()
     
     # pitches = Category.query.get(id)
     print(category)
