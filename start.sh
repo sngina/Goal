@@ -1,4 +1,5 @@
-export MOVIE_API_KEY=<Your api key>
-export SECRET_KEY=<Your secret key>
+export SECRET_KEY = 'YOUcantHackThis'
+export MAIL_USERNAME='sngina707@gmail.com'
+export MAIL_PASSWORD='malika'
 
-python3.6 manage.py server
+python3.6 manage.py runserver
