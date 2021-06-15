@@ -34,3 +34,34 @@ It is hosted by heroku
         $ pip install -r requirements.txt
         $ chmod +x run.py
         $ ./run.py 
+## Testing the Application
+
+* To run the tests for the application file:
+
+        $ python3 manage.py test
+        
+## Technologies Used
+HTML, CSS & Bootstrap
+
+Git
+
+Python
+
+Flask Framework
+
+---
+
+## Bugs
+---
+None at the moment, but would love to hear your feedback!
+
+---
+
+## Contact Details
+sngina707@gmail.com
+ 
+
+---
+
+### License
+This Project is under the [MIT](LICENSE) license
