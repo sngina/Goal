@@ -20,6 +20,7 @@ It is hosted by heroku
 ---
 
 ## SetUp
+Well create a Pitch on the Post Pitch and you can either like or dislike it and also leave a comment
 ### Cloning
 
 * In your terminal:
@@ -53,7 +54,7 @@ Flask Framework
 
 ## Bugs
 ---
-None at the moment, but would love to hear your feedback!
+The Downvote might act up!
 
 ---
 
