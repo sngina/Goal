@@ -5,7 +5,7 @@ from . import main
 from ..models import  User ,Pitch ,User ,Comment, Upvote, Downvote
 from flask_login import login_required ,current_user
 from .. import db 
-from . forms import PitchForm, CommentForm,UpvoteForm,Downvote
+from. forms import PitchForm, CommentForm,UpvoteForm,Downvote
 from app.main import forms
 import markdown2
 
