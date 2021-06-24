@@ -21,9 +21,8 @@ def index():
     interviewpitch = Pitch.query.filter_by(category = "interviewpitch")
     newspitch = Pitch.query.filter_by(category = "newspitch")
     productpitch = Pitch.query.filter_by(category = "productpitch")
-
-    upvotes = Upvote.get_all_upvotes(pitch_id=Pitch.id)
-    downvote = Downvote.get_all_downvotes(pitch_id= Pitch)
+    upvotes = Upvote.query.filter_by(pitch_id=Pitch.id)
+    downvote = Downvote.query.filter_by(pitch_id= Pitch.id)
 
     return render_template('home.html', title = title, passionpitch=passionpitch, interviewpitch= interviewpitch, productpitch = productpitch, newspitch = newspitch, upvotes=upvotes)
     
@@ -35,13 +34,12 @@ def index():
 @login_required
 def new_pitch():
     form = PitchForm()
-    my_upvotes = Upvote.query.filter_by(pitch_id = Pitch.id)
+    upvotes = Upvote.query.filter_by(pitch_id = Pitch.id)
     if form.validate_on_submit():
         description = form.description.data
         title = form.title.data
         owner_id = current_user
         category = form.category.data
-        print(current_user._get_current_object().id)
         new_pitch = Pitch(owner_id =current_user._get_current_object().id, title = title,description=description,category=category)
         db.session.add(new_pitch)
         db.session.commit()
