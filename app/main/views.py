@@ -23,13 +23,10 @@ def index():
     newspitch = Pitch.query.filter_by(category = "newspitch")
     productpitch = Pitch.query.filter_by(category = "productpitch")
     upvotes = Upvote.query.filter_by()
-    downvote = Downvote.query.filter_by()
+    dvote = Downvote.query.filter()
 
     return render_template('home.html', title = title, passionpitch=passionpitch, interviewpitch= interviewpitch, productpitch = productpitch, newspitch = newspitch, upvotes=upvotes)
     
-
-
-
 
 @main.route('/pitches/new/', methods = ['GET','POST'])
 @login_required
@@ -48,8 +45,6 @@ def new_pitch():
         
         return redirect(url_for('main.index'))
     return render_template('pitches.html',form=form)
-
-
 
 
 @main.route('/comment/new/<int:pitch_id>', methods = ['GET','POST'])
@@ -81,7 +76,7 @@ def upvote(pitch_id):
     new_upvotes.save_upvotes()
     return redirect (url_for('main.index'))
 
-@main.route('/pitch/likes/<pitch_id>' , methods =  ['GET' ,'POST'])  
+@main.route('/pitch/dislikes/<pitch_id>' , methods =  ['GET' ,'POST'])  
 @login_required	
 def downvote(pitch_id):
     if Downvote.query.filter(Downvote.user_id==current_user.id , Downvote.pitch_id==pitch_id).first():

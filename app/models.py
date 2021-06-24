@@ -119,7 +119,7 @@ class Downvote(db.Model):
     downvote = db.Column(db.Integer,default=1)
     pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-
+   # fuction of saving the downvotes
     def save_downvotes(self):
         db.session.add(self)
         db.session.commit()
