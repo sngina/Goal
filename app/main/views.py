@@ -6,7 +6,7 @@ from . import main
 from ..models import  User ,Pitch ,User ,Comment, Upvote, Downvote
 from flask_login import login_required ,current_user
 from .. import db 
-from. forms import PitchForm, CommentForm,UpvoteForm,Downvote
+from. forms import PitchForm, CommentForm
 from app.main import forms
 import markdown2
 
@@ -14,25 +14,20 @@ import markdown2
 
 @main.route('/', methods = ['GET' , 'POST'])
 def index():
-
- 
-    pname = Pitch.query.filter_by().first()
     title = 'Home'
-    passionpitch= Pitch.query.filter_by(category="passionpitch")
-    interviewpitch = Pitch.query.filter_by(category = "interviewpitch")
-    newspitch = Pitch.query.filter_by(category = "newspitch")
-    productpitch = Pitch.query.filter_by(category = "productpitch")
-    upvotes = Upvote.query.filter_by()
-    dvote = Downvote.query.filter()
+    passionpitch= Pitch.query.filter_by(category="passionpitch").all()
+    interviewpitch = Pitch.query.filter_by(category = "interviewpitch").all()
+    newspitch = Pitch.query.filter_by(category = "newspitch").all()
+    productpitch = Pitch.query.filter_by(category = "productpitch").all()
+    
 
-    return render_template('home.html', title = title, passionpitch=passionpitch, interviewpitch= interviewpitch, productpitch = productpitch, newspitch = newspitch, upvotes=upvotes)
+    return render_template('home.html', title = title, passionpitch=passionpitch, interviewpitch= interviewpitch, productpitch = productpitch, newspitch = newspitch)
     
 
 @main.route('/pitches/new/', methods = ['GET','POST'])
 @login_required
 def new_pitch():
     form = PitchForm()
-    upvotes = Upvote.query.filter_by(pitch_id = Pitch.id)
     if form.validate_on_submit():
         description = form.description.data
         title = form.title.data
@@ -72,7 +67,7 @@ def new_comment(pitch_id):
 def upvote(pitch_id):
     if Upvote.query.filter(Upvote.user_id==current_user.id , Upvote.pitch_id==pitch_id).first():
         return redirect(url_for('main.index'))
-    new_upvotes = Upvote(pitch_id=pitch_id,user_id= current_user)
+    new_upvotes = Upvote(pitch_id=pitch_id,user_id= current_user.id)
     new_upvotes.save_upvotes()
     return redirect (url_for('main.index'))
 
@@ -81,8 +76,8 @@ def upvote(pitch_id):
 def downvote(pitch_id):
     if Downvote.query.filter(Downvote.user_id==current_user.id , Downvote.pitch_id==pitch_id).first():
         return redirect(url_for('main.index'))
-    new_downvotes = Downvote(pitch_id=pitch_id,user_id= current_user)
-    new_downvotes.save_upvotes()
+    new_downvotes = Downvote(pitch_id=pitch_id,user_id= current_user.id)
+    new_downvotes.save_downvotes()
     return redirect (url_for('main.index'))
 
    

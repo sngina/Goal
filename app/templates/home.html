@@ -13,8 +13,52 @@
   {% for item in passionpitch %}
   <p>{{item.category}}</p>
   <p>{{item.description}}</p>
-   <a href="{{url_for('main.upvote',pitch_id=nopit.id)}}"class ="btn">Upvotes</a>
-   <span>{{nopit.likes.cout()}}</span>
+   <a href="{{url_for('main.upvote',pitch_id=item.id)}}"class ="btn">Upvotes</a>
+   <span><button>{{item.upvotes.count()}}</button></span>
+   <a href="{{url_for('main.downvote',pitch_id=item.id)}}"class ="btn">Downvotes</a>
+   <span><button>{{item.downvotes.count()}}</button></span>
+   <a href="{{url_for('main.new_comment',pitch_id = item.id)}}"><button>Comment</button></a>
+   
 </div>
  {%endfor%}
+ <div class="interview">
+  {% for item in interviewpitch %}
+  <p>{{item.category}}</p>
+  <p>{{item.description}}</p>
+   <a href="{{url_for('main.upvote',pitch_id=item.id)}}"class ="btn">Upvotes</a>
+   <span><button>{{item.upvotes.count()}}</button></span>
+   <a href="{{url_for('main.downvote',pitch_id=item.id)}}"class ="btn">Downvotes</a>
+   <span><button>{{item.downvotes.count()}}</button></span>
+   <a href="{{url_for('main.new_comment',pitch_id = item.id)}}"><button>Comment</button></a>
+   
+ </div>
+ {%endfor%}
+ <div class="news">
+   {% for item in newspitch%}
+   <p>{{item.category}}</p>
+   <p>{{item.description}}</p>
+   
+   <a href="{{url_for('main.upvote',pitch_id=item.id)}}"class ="btn">Upvotes</a>
+   <span><button>{{item.upvotes.count()}}</button></span>
+   <a href="{{url_for('main.downvote',pitch_id=item.id)}}"class ="btn">Downvotes</a>
+   <span><button>{{item.downvotes.count()}}</button></span>
+   <a href="{{url_for('main.new_comment',pitch_id = item.id)}}"><button>Comment</button></a>
+   
+ </div>
+{%endfor%}
+<div class="product">
+  
+    {% for item in productpitch%}
+    <p>{{item.category}}</p>
+    <p>{{item.description}}</p>
+    
+    <a href="{{url_for('main.upvote',pitch_id=item.id)}}"class ="btn">Upvotes</a>
+    <span><button>{{item.upvotes.count()}}</button></span>
+    <a href="{{url_for('main.downvote',pitch_id=item.id)}}"class ="btn">Downvotes</a>
+    <span><button>{{item.downvotes.count()}}</button></span>
+    <a href="{{url_for('main.new_comment',pitch_id = item.id)}}"><button>Comment</button></a>
+    
+  </div>
+  {%endfor%}
+</div>
 {% endblock %}
