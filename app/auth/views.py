@@ -21,7 +21,7 @@ def login():
 
     title = "one_minute_picth login"
             
-    return render_template('auth/login.html',lozgin_form = login_form)
+    return render_template('auth/login.html',login_form = login_form)
 
 @auth.route('/register',methods = ["GET","POST"])
 def register():

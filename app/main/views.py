@@ -17,15 +17,15 @@ def index():
  
     pname = Pitch.query.filter_by().first()
     title = 'Home'
-    pickuplines = Pitch.query.filter_by(category="pickuplines")
+    passionpitch= Pitch.query.filter_by(category="passionpitch")
     interviewpitch = Pitch.query.filter_by(category = "interviewpitch")
-    promotionpitch = Pitch.query.filter_by(category = "promotionpitch")
+    newspitch = Pitch.query.filter_by(category = "newspitch")
     productpitch = Pitch.query.filter_by(category = "productpitch")
 
     upvotes = Upvote.get_all_upvotes(pitch_id=Pitch.id)
     
 
-    return render_template('home.html', title = title, pickuplines=pickuplines, interviewpitch= interviewpitch, promotionpitch = promotionpitch, productpitch = productpitch, upvotes=upvotes)
+    return render_template('home.html', title = title, passionpitch=passionpitch, interviewpitch= interviewpitch, productpitch = productpitch, newspitch = newspitch, upvotes=upvotes)
     
 
 
