@@ -81,5 +81,13 @@ def upvote(pitch_id):
     new_upvotes.save_upvotes()
     return redirect (url_for('main.index'))
 
-  
+@main.route('/pitch/likes/<pitch_id>' , methods =  ['GET' ,'POST'])  
+@login_required	
+def downvote(pitch_id):
+    if Downvote.query.filter(Downvote.user_id==current_user.id , Downvote.pitch_id==pitch_id).first():
+        return redirect(url_for('main.index'))
+    new_downvotes = Downvote(pitch_id=pitch_id,user_id= current_user)
+    new_downvotes.save_upvotes()
+    return redirect (url_for('main.index'))
+
    
