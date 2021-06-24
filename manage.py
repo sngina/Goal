@@ -4,13 +4,11 @@ from flask_script import Manager ,Server
 from flask_migrate import Migrate, MigrateCommand
 
 # creating app instances..
-app = create_app('production')
+app = create_app('development')
 
 manager = Manager(app)
 manager.add_command('server', Server)
-migrate = Migrate(app, db) # intialze migrate pass in db and app instance
-manager.add_command('db',MigrateCommand) #manager command and pass the migratecommand class
-
+migrate = Migrate(app, db) 
 @manager.command
 def test():
     """Run the unit tests."""
