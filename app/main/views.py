@@ -23,7 +23,7 @@ def index():
     productpitch = Pitch.query.filter_by(category = "productpitch")
 
     upvotes = Upvote.get_all_upvotes(pitch_id=Pitch.id)
-    
+    downvote = Downvote.get_all_downvotes(pitch_id= Pitch)
 
     return render_template('home.html', title = title, passionpitch=passionpitch, interviewpitch= interviewpitch, productpitch = productpitch, newspitch = newspitch, upvotes=upvotes)
     
