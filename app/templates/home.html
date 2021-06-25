@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="homepitch">
+<div class="homepitch" style="text-align: center;">
   
   <h3 style="color:black;text-align: center">Pitch</h3>
   <a href="{{url_for('main.new_pitch' )}}"> <button>Post a Pitch</button></a>
@@ -21,7 +21,7 @@
    
 </div>
  {%endfor%}
- <div class="interview">
+ <div class="interview" style="text-align: center;">
   {% for item in interviewpitch %}
   <p>{{item.category}}</p>
   <p>{{item.description}}</p>
@@ -33,7 +33,7 @@
    
  </div>
  {%endfor%}
- <div class="news">
+ <div class="news" style="text-align: center;">
    {% for item in newspitch%}
    <p>{{item.category}}</p>
    <p>{{item.description}}</p>
@@ -46,7 +46,7 @@
    
  </div>
 {%endfor%}
-<div class="product">
+<div class="product" style="text-align: center;">
   
     {% for item in productpitch%}
     <p>{{item.category}}</p>
