@@ -21,7 +21,7 @@ It is hosted by heroku
 
 ## SetUp
 Well create a Pitch on the Post Pitch and you can either like or dislike it and also leave a comment
-/
+https://one-minute-quote.herokuapp.com/
 ### Cloning
 
 * In your terminal:
